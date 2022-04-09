@@ -1,9 +1,22 @@
+import { getAuth } from 'firebase/auth';
 import React from 'react';
+// import useFirebase from '../hooks/useFirebase';//custom hook
+import {useSignInWithGoogle} from 'react-firebase-hooks/auth';
+import app from '../../firebase.init';
+
+const auth = getAuth(app);
 
 const Login = () => {
+	// const {signInWithGoogle} = useFirebase();
+	const [signInWithGoogle, user] = useSignInWithGoogle(auth)
     return (
 		<>
 		<h1 className='text-3xl text-center text-red-700 my-6'>Please Login</h1>
+		<div className='flex justify-center mb-3'>
+			<button onClick={() => signInWithGoogle()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+			Google Sign in
+		</button>
+		</div>
 		<div className="w-full max-w-xs mx-auto">
 			<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 				<div className="mb-4">
@@ -30,7 +43,7 @@ const Login = () => {
 				</div>
 				<div className="flex items-center justify-between">
 				<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-					Please Login
+					Login
 				</button>
 				<a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
 					Forgot Password?
