@@ -29,6 +29,9 @@ const Header = () => {
                     <li className='sm:inline-block'>
                         <NavLink style={({ isActive }) => isActive ? {textDecoration: 'underline'} : undefined} className='p-3 hover:text-white' to="/register">Register</NavLink>
                     </li>
+                   { user && <li className='sm:inline-block'>
+                        <NavLink style={({ isActive }) => isActive ? {textDecoration: 'underline'} : undefined} className='p-3 hover:text-white' to="/special">Special</NavLink>
+                    </li>}
                    { user?.uid 
                    ? 
                    <li className='sm:inline-block'>
